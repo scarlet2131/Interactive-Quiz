@@ -1,0 +1,119 @@
+/* Name : Monisha Ranjan(C0914148)
+Date : 25 november, 2023 */
+
+
+/* General style for the whole page */
+body {
+    font-family: 'Arial', sans-serif; /* Sets the font to Arial */
+    background: linear-gradient(to right, #f006a2, #dd7e1f); /* Gradient background color */
+    margin: 0; /* No extra space around the edges */
+    padding: 20px; /* Space inside the edges */
+    height: 100%; /* Takes full height of the page */
+    display: flex; /* Arranges items in a flexible layout */
+    flex-direction: column; /* Items are stacked vertically */
+    justify-content: center; /* Centers items vertically */
+    align-items: center; /* Centers items horizontally */
+}
+
+/* Style for the main heading that moves */
+.animated-heading {
+    font-size: 2em; /* Big size for the text */
+    text-align: center; /* Centers the text */
+    color: #333; /* Color of the heading text */
+    margin-bottom: 20px; /* Space below the heading */
+    animation: moveHeading 3s ease-in-out infinite alternate; /* Makes the heading move left and right */
+}
+
+/* Style for the container that holds all quiz questions */
+.quiz-container {
+    width: 100%; /* Full width */
+    max-width: 950px; /* But no wider than 950px */
+    display: grid; /* Arranges questions in a grid layout */
+    grid-template-columns: repeat(auto-fill, minmax(205px, 2fr)); /* Sets the size and number of columns */
+    gap: 60px; /* Space between grid items */
+}
+
+/* General style for each question box */
+.question {
+    box-shadow: 0px 4px 6px rgba(248, 245, 245, 0.1); /* Shadow effect for depth */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Space inside each question box */
+    color: white; /* Text color inside the box */
+    animation: fadeIn ease-in-out infinite alternate; /* Fading effect */
+}
+
+/* Different background colors for easy and hard questions */
+.question[data-difficulty="easy"] {
+    background: linear-gradient(to right, #e36262, #eca160); /* Light color for easy questions */
+}
+
+.question[data-difficulty="hard"] {
+    background: linear-gradient(to right, #b1b5ae, #e4695e); /* Dark color for hard questions */
+}
+
+/* Style for each option in a question */
+.option {
+    display: block; /* Takes the full width available */
+    background: #242323; /* Background color of the option */
+    margin-top: 10px; /* Space above each option */
+    padding: 10px; /* Space inside each option */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+    cursor: pointer; /* Changes cursor to indicate it's clickable */
+}
+
+/* Change the background color when hovering over an option */
+.option:hover {
+    background: #897d7d; /* Lighter color on hover */
+}
+
+/* Hiding the actual radio buttons */
+input[type="radio"] {
+    opacity: 0; /* Makes them invisible */
+    position: absolute; /* Takes them out of normal flow */
+    display: none; /* Hides them completely */
+}
+
+/* Style for labels next to radio buttons */
+input[type="radio"] + label {
+    position: relative; /* Needed for positioning the pseudo-elements */
+    padding-left: 35px; /* Space for custom radio button */
+    display: block; /* Takes full width */
+    height: 100%; /* Full height of the container */
+    margin-left: -35px; /* Adjusts position */
+    padding-right: 10px; /* Padding on the right */
+}
+
+/* Change text color to green if the answer is correct */
+input[type="radio"][value="correct"]:checked + span {
+    color: #4CAF50; 
+}
+
+/* Change text color to red if the answer is incorrect */
+input[type="radio"][value="incorrect"]:checked + span {
+    color: #f44336; 
+}
+
+/* Adjust the grid layout for smaller screens */
+@media screen and (max-width: 600px) {
+    .quiz-container {
+        grid-template-columns: 1fr; /* Only one column on small screens */
+    }
+}
+
+/* Keyframe for fading effect */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Keyframe for moving heading */
+@keyframes moveHeading {
+    0% {
+        transform: translateX(0); /* Starts from original position */
+    }
+    100% {
+        transform: translateX(20px); /* Moves 20 pixels to the right */
+    }
+}
